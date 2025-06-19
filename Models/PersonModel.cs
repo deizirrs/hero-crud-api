@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Person.routes.Models
+namespace Person.Models
 {
     public class PersonModel
     {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Person.routes.Models;
+using Person.Models;
 
 namespace Person.route
 {
