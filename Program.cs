@@ -1,3 +1,5 @@
+using Person.route;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,8 +16,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGet("person", () => "Olá pessoa");
 
+app.PersonRoutes();
 
 app.UseHttpsRedirection();
 app.Run();
