@@ -2,15 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Person.routes.Models;
 
 namespace Person.route
 {
     public static class PersonRoute
     {
-        public static void RegisterRoutes(WebApplication app)
+        public static void PersonRoutes(this WebApplication app)
         {
-            app.MapGet("/", () => Results.Redirect("/Person"));
-        }
+            app.MapGet("person", () => new PersonModel("Deizi"));
+
+        }  
         
     }
 }
