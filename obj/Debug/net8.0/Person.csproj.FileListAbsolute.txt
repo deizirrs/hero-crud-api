@@ -31,3 +31,4 @@ C:\Users\deizi\projetos\dotnet-aplications\Person\obj\Debug\net8.0\refint\Person
 C:\Users\deizi\projetos\dotnet-aplications\Person\obj\Debug\net8.0\Person.pdb
 C:\Users\deizi\projetos\dotnet-aplications\Person\obj\Debug\net8.0\Person.genruntimeconfig.cache
 C:\Users\deizi\projetos\dotnet-aplications\Person\obj\Debug\net8.0\ref\Person.dll
+C:\Users\deizi\projetos\dotnet-aplications\Person\obj\Debug\net8.0\Person.sourcelink.json
