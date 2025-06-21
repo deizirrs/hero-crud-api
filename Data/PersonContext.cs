@@ -10,7 +10,7 @@ namespace Person.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Configure your database connection string here
+
             optionsBuilder.UseSqlite("Data Source=person.sqlite");
         }
     }
