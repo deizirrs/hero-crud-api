@@ -15,16 +15,9 @@ namespace Person.route
           var route = app.MapGroup("person");
           route.MapPost("", async (PersonRequest req, PersonContext context) =>
           {
-              //criando a instância de uma pessoa, passando o parâmetro construido na classe record (name)
+
               var person = new PersonModel(req.name);
-              
-              //utilizando recurso do context(Banco de dados)
-              //Resumo: crie uma pessoa pra mim com o nome que eu passei e adicione ela dentro do context(Banco de dados)
-              //OBS: isso não garante que ela (person) vai estar no banco de dados, até que seja feito o commit
               await context.AddAsync(person);
-              
-              //Fazendo o commit,
-              //ele basicamente vai ao banco de dados, no sql server e faz o commit
               await context.SaveChangesAsync();
           });
 
@@ -36,14 +29,29 @@ namespace Person.route
 
               route.MapPut("{id:guid}", async (Guid id, PersonRequest req, PersonContext context) =>
               {
-                  //Usando o FirstOrDefaultAsync porque ele evita que a aplicação gere um execeção, caso não tenha o id no banco de dados.
-                  //OBS: Pode se usar também o FindAsync(id), passando somente o id e sem a necessidade de utilizar a expressão lambda
+                  //Usando o FirstOrDefaultAsync para ele evita que a aplicação gere um execeção, caso não tenha o id no banco de dados.
+                  //OBS: Pode se usar também o FindAsync(id), passando somente o id e sem a necessidade de utilizar a expressão lambda.
                   var person = await context.People.FirstOrDefaultAsync(x => x.Id == id);
 
                   if (person == null)
                       return Results.NotFound();
                   
                   person.ChangeName(req.name);
+                  await context.SaveChangesAsync();
+
+                  return Results.Ok();
+              });
+
+              
+            // Ao invés de excluir os dados da Person por completo (Hard Delete), vamos utilizar o Soft Delete, alterando o nome para "DESATIVADO" sem remover o registro do sistema.
+              route.MapDelete("{id:guid}", async (Guid id, PersonContext context) =>
+              {
+                  var person = await context.People.FirstOrDefaultAsync(x => x.Id == id);
+
+                  if (person == null)
+                      return Results.NotFound();
+                  
+                  person.SetInactive();
                   await context.SaveChangesAsync();
 
                   return Results.Ok();
