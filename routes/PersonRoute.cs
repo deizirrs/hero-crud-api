@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Person.Data;
 using Person.Models;
 
@@ -11,7 +12,6 @@ namespace Person.route
     {
         public static void PersonRoutes(this WebApplication app)
         {
-          //  app.MapGet("person", () => new PersonModel("Deizi"));
           var route = app.MapGroup("person");
           route.MapPost("", async (PersonRequest req, PersonContext context) =>
           {
@@ -27,6 +27,13 @@ namespace Person.route
               //ele basicamente vai ao banco de dados, no sql server e faz o commit
               await context.SaveChangesAsync();
           });
+
+              route.MapGet("", async (PersonContext context) =>
+              {
+                  var people = await context.People.ToListAsync();
+                  return Results.Ok(people);
+              });
+
 
         }  
         
