@@ -14,7 +14,13 @@ namespace Person.Models
 
         }
         public Guid Id { get; init; }
-        public string Name { get; private set; } 
-        
+        //private set para proteger a propriedade contra alterações externas
+        public string Name { get; private set; }
+
+        //Boa prática no conceito de encapsulamento, pois não permiti que o valor seja alterado diretamente de fora e controla as alterações via método
+        public void ChangeName(string name)
+        {
+            Name = name;
+        }
     }
 }
