@@ -34,7 +34,20 @@ namespace Person.route
                   return Results.Ok(people);
               });
 
+              route.MapPut("{id:guid}", async (Guid id, PersonRequest req, PersonContext context) =>
+              {
+                  //Usando o FirstOrDefaultAsync porque ele evita que a aplicação gere um execeção, caso não tenha o id no banco de dados.
+                  //OBS: Pode se usar também o FindAsync(id), passando somente o id e sem a necessidade de utilizar a expressão lambda
+                  var person = await context.People.FirstOrDefaultAsync(x => x.Id == id);
 
+                  if (person == null)
+                      return Results.NotFound();
+                  
+                  person.ChangeName(req.name);
+                  await context.SaveChangesAsync();
+
+                  return Results.Ok();
+              });
         }  
         
     }
