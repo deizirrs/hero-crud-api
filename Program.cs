@@ -21,6 +21,17 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-app.Urls.Add($"http://*:{port}");
+app.Urls.Add($"http://+:{port}");
+
+if (!app.Environment.IsProduction())
+{
+    app.UseHttpsRedirection();
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<PersonContext>();
+    db.Database.Migrate();
+}
 
 app.Run();

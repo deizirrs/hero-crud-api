@@ -5,13 +5,11 @@ namespace Person.Data
 {
     public class PersonContext : DbContext
     {
-        //Representação da tabela no Banco de Dados
-        public DbSet<PersonModel> People { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public PersonContext(DbContextOptions<PersonContext> options)
+            : base(options)
         {
-
-            optionsBuilder.UseSqlite("Data Source=person.sqlite");
         }
+
+        public DbSet<PersonModel> People { get; set; }
     }
 }
