@@ -1,6 +1,6 @@
 # Hero CRUD API 🚀
 
-Este projeto foi criado com o objetivo de explorar a linguagem **C#** utilizando a plataforma de desenvolvimento **.NET 8**.
+Este projeto foi criado com o objetivo de explorar a linguagem **C#** utilizando a plataforma de desenvolvimento **.NET**.
 
 ---
 
@@ -32,9 +32,8 @@ Além disso, a API conta com integração ao **Swagger UI**, que facilita a visu
 
 * Cadastro de pessoas
 * Listagem de todas as pessoas
-* Consulta de pessoa por ID
 * Atualização de cadastro
-* Exclusão lógica (soft delete)
+* Exclusão de cadastro (soft delete)
 * Documentação e testes via Swagger UI | Insomnia
 
 <br>
@@ -136,7 +135,7 @@ Fiz o deploy da API utilizando a plataforma **Render.com**.
 
 [👉 Link  da API em produção](https://hero-crud-api.onrender.com)
 
----
+<br>
 
 ### 📬 Testando via Postman ou Insomnia
 
@@ -173,10 +172,9 @@ Para testar os endpoints via **Postman** ou **Insomnia**, siga os passos:
    ```
 > **⚠️ Para operações DELETE e PUT, informe apenas o id na URL — não inclua o id no corpo da requisição. Caso contrário, será retornado um status 405 Method Not Allowed.**
 
----
 <br>
 
-### 👩‍💻 Feito por
+### 👩‍💻 Feito por:
 
 **Deiziane Rodrigues**
 
